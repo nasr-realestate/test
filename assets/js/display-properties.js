@@ -1,13 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
   const container = document.getElementById('properties-container');
-  const category = 'apartments';
+  const category = 'apartments'; // التصنيف
 
-  fetch(`/test/data/properties/${category}/index.json`)
+  // المسار الصحيح لملف index.json داخل التصنيف
+  fetch(`/data/properties/${category}/index.json`)
     .then(response => response.json())
     .then(propertyFiles => {
       container.innerHTML = '';
       propertyFiles.forEach(fileName => {
-        fetch(`/test/data/properties/${category}/${fileName}`)
+        // جلب بيانات كل ملف عقار من مجلد التصنيف
+        fetch(`/data/properties/${category}/${fileName}`)
           .then(res => res.json())
           .then(data => {
             const card = document.createElement('div');
